@@ -1,7 +1,7 @@
 'use strict';
 
 const API_BASE = 'http://localhost:3001';
-
+let controller = null; // Variabile globale per tenere traccia del controller di fetch attivo
 async function fetchTransactions(query = '') {
 
   // Se esiste una richiesta precedente, annullala
@@ -10,7 +10,7 @@ async function fetchTransactions(query = '') {
   }
 
   // Crea un nuovo controller per questa richiesta
-  controller = new AbortController();
+   controller = new AbortController();
 
   const url = query
     ? `${API_BASE}/transactions?q=${encodeURIComponent(query)}`
