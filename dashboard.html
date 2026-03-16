@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>LipariBank — Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar__logo">🏦 LipariBank</div>
+      <ul class="sidebar__nav">
+        <li><a href="dashboard.html" class="active">📊 Dashboard</a></li>
+        <li><a href="transactions.html">📋 Movimenti</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <div class="topbar">
+        <span class="topbar__title">Dashboard</span>
+        <span class="topbar__user" id="topbarUser">—</span>
+      </div>
+
+      <div class="content">
+
+        <!-- Stats grid -->
+        <div class="stats-grid" id="statsGrid">
+          <div class="card card--accent">
+            <div class="card__label">Saldo disponibile</div>
+            <div class="card__value" id="statBalance">—</div>
+            <div class="card__sub" id="statIban">—</div>
+          </div>
+          <div class="card">
+            <div class="card__label">Entrate del mese</div>
+            <div class="card__value" id="statCredits" style="color:var(--credit)">—</div>
+            <div class="card__sub" id="statCreditsCount">— transazioni</div>
+          </div>
+          <div class="card">
+            <div class="card__label">Uscite del mese</div>
+            <div class="card__value" id="statDebits" style="color:var(--debit)">—</div>
+            <div class="card__sub" id="statDebitsCount">— transazioni</div>
+          </div>
+        </div>
+
+        <!-- Recent transactions -->
+        <div class="section-header mt-8">
+          <span class="section-title">Movimenti recenti</span>
+          <a href="transactions.html" class="text-muted">Vedi tutti →</a>
+        </div>
+
+        <div class="card" style="padding:0; overflow:hidden;">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Descrizione</th>
+                  <th>Categoria</th>
+                  <th style="text-align:right">Importo</th>
+                </tr>
+              </thead>
+              <tbody id="recentBody">
+                <tr><td colspan="4" class="state-loading">Caricamento…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /main -->
+  </div><!-- /layout -->
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script>
+    initDashboard();
+  </script>
+</body>
+</html>
