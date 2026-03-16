@@ -4,7 +4,7 @@ const API_BASE = 'http://localhost:3001';
 
 async function fetchTransactions(query = '') {
 
-  // Se esiste una richiesta precedente, abortiscila
+  // Se esiste una richiesta precedente, annullala
   if (controller) {
     controller.abort();
   }

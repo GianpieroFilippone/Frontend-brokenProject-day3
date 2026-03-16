@@ -3,6 +3,7 @@
 function debounce(fn, delay) {
   let timer;
   return function (...args) {
+    // Se c'è un timer attivo, cancellalo
     clearTimeout(timer);
     timer = setTimeout(() => fn.apply(this, args), delay);
   };
