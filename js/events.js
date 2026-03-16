@@ -46,13 +46,7 @@ function initTableEvents() {
   if (!tbody) return;
 
   tbody.addEventListener('click', handleRowClick);
+
 }
 
-function attachRowEvents() {
-  const tbody = document.getElementById('transactionsBody');
-  if (!tbody) return;
-
-  tbody.querySelectorAll('tr[data-id]').forEach(row => {
-    row.addEventListener('click', handleRowClick);
-  });
-}
+// rimosso la chiamata a attachRowEvents() in renderTransactions, ora gestiamo tutto con event delegation
