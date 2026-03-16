@@ -83,23 +83,35 @@
   <script src="js/transactions.js"></script>
   <script src="js/events.js"></script>
   <script src="js/search.js"></script>
-  <script>
-    (async () => {
-      const user = await fetchUser();
-      if (user) {
-        document.getElementById('topbarUser').textContent = user.name;
-      }
 
-      const txs = await fetchTransactions();
-      setTransactions(txs);
-      renderTransactions(txs);
-      initTableEvents();
-      initSearch(async (query) => {
-        const results = await fetchTransactions(query);
-        setTransactions(results);
-        renderTransactions(results);
-      });
-    })();
-  </script>
+  // Script principale: carica dati, imposta eventi, gestisce ricerca
+  // Ho aggiunto toLowerCase() per rendere la ricerca case-insensitive
+  <script>
+  (async () => {
+    const user = await fetchUser();
+    if (user) {
+      document.getElementById('topbarUser').textContent = user.name;
+    }
+
+    const txs = await fetchTransactions();
+    setTransactions(txs);
+    renderTransactions(txs);
+    initTableEvents();
+
+    initSearch(async (query) => {
+      const all = await fetchTransactions();
+      const q = query.toLowerCase();
+      const results = q
+        ? all.filter(tx =>
+            tx.description.toLowerCase().includes(q) ||
+            tx.category.toLowerCase().includes(q)
+          )
+        : all;
+      setTransactions(results);
+      renderTransactions(results);
+    });
+
+  })();
+</script>
 </body>
 </html>
